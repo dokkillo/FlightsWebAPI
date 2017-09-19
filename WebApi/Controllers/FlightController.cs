@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Results;
 using WebApi.BML;
 using WebApi.DB;
 
@@ -32,9 +33,6 @@ namespace WebApi.Controllers
             {
                 return BadRequest();
             }
-            
-
-
 
             if(!Int32.TryParse(queryString.Get("passengers"),out passengers))
             {
@@ -73,8 +71,7 @@ namespace WebApi.Controllers
             origin = queryString.Get("origin");
             destination = queryString.Get("destination");
 
-            var result = flightSearch.Search(origin, destination, passengers, dateIn, DateTime.MinValue, false);
-            
+            var result = flightSearch.Search(origin, destination, passengers, dateIn, DateTime.MinValue, false);            
 
 
             return Ok(result);

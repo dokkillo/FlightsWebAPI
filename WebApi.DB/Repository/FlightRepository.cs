@@ -16,7 +16,7 @@ namespace WebApi.DB.Repository
             this.db = _db;
         }
 
-        public List<Flight> Load(string Origin, string Destination, int Passengers, DateTime DateIn)
+        public List<Flight> Load(string Origin, string Destination, DateTime DateIn)
         {
             return db.GetFlights().Where(x => x.Origin.ToLower() == Origin.ToLower() && x.Destintation.ToLower() == Destination.ToLower() && x.Time.Date == DateIn.Date).ToList();          
         }

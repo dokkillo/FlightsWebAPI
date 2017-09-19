@@ -12,6 +12,7 @@ namespace WebApi.BML
     public class FlightSearch
     {
         private DataBase db;
+        const int MAX_PLACES = 50;
 
         public FlightSearch(DataBase _db)
         {
@@ -20,8 +21,40 @@ namespace WebApi.BML
 
         public List<Flight> Search(string Origin, string Destination, int Passengers, DateTime DateIn, DateTime DateOut, bool Roundtrip)
         {
+            var flights = GetFlight(Origin, Destination, Passengers, DateIn);
+
+            if(Roundtrip)
+            {
+                flights.AddRange(GetFlight(Destination, Origin, Passengers, DateOut));
+            }
+
+            return flights;
+        }
+
+        private List<Flight> GetFlight(string Origin, string Destination, int Passengers, DateTime DateIn)
+        {
+            var AvailableFlightList = new List<Flight>();
             var repository = new FlightRepository(db);
-            return repository.Load(Origin, Destination, Passengers, DateIn);
+            var flights = repository.Load(Origin, Destination, DateIn);
+            foreach (var flight in flights)
+            {
+                if (ExistAvailableSeats(flight.Key, Passengers))
+                {
+                    AvailableFlightList.Add(flight);
+                }
+            }
+
+            return AvailableFlightList;
+        }
+
+        private bool ExistAvailableSeats(string FlightKey, int Passangers)
+        {
+            var repository = new ReservationRepository(db);
+            if(repository.GetNumReservations(FlightKey) <= MAX_PLACES + Passangers)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
