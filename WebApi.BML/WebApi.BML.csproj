@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="FlightSearch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReservationManagment.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebApi.BLL\WebApi.BLL.csproj">

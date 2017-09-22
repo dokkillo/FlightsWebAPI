@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WebApi.BML;
 using WebApi.DB;
 
 namespace WebApi.Controllers
@@ -12,8 +13,26 @@ namespace WebApi.Controllers
     {
         public IHttpActionResult Get()
         {
+            var db = DataBase.Instance;
+            var managment = new ReservationManagment(db);
 
-            return Ok();
+            return Ok(managment.GetReservations());
+
+        }
+
+        public IHttpActionResult Get(string id)
+        {
+            var db = DataBase.Instance;
+            var managment = new ReservationManagment(db);
+            var reservation = managment.GetReservation(id);
+
+            if(reservation == null)
+            {
+                return NotFound();
+            }
+            return Ok(reservation);
+            
+
         }
 
 
