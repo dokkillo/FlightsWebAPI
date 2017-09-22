@@ -90,12 +90,7 @@ namespace WebApi.Controllers
         }
 
 
-        public IHttpActionResult Post()
-        {
-
-            return Ok();
-        }
-
+      
 
         }
 }
