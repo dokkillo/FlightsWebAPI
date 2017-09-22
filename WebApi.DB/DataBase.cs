@@ -69,7 +69,44 @@ namespace WebApi.DB
                                 new Passenger("Hermegildo Zelda",1,1)
                             }),
 
-               })
+               }),
+               new Reservation("0002","test@test.com","00000", new List<ReservationFlights>()
+               {
+                            new ReservationFlights("Flight0001", new List<Passenger>()
+                            {
+                                new Passenger("Kenzo",5,2)
+                            }),
+                            new ReservationFlights("Flight0002", new List<Passenger>()
+                            {
+                                new Passenger("Kenzo",10,2)
+                            }),
+
+               }),
+                new Reservation("0003","test@test.com","00000", new List<ReservationFlights>()
+               {
+                            new ReservationFlights("Flight0001", new List<Passenger>()
+                            {
+                                new Passenger("Luis",11,3)
+                            }),
+                            new ReservationFlights("Flight0002", new List<Passenger>()
+                            {
+                                new Passenger("Luis",11,3)
+                            }),
+
+               }),
+                   new Reservation("0004","test@test.com","00000", new List<ReservationFlights>()
+               {
+                            new ReservationFlights("Flight0001", new List<Passenger>()
+                            {
+                                new Passenger("Marco Aurelio",0,4)
+                            }),
+                            new ReservationFlights("Flight0002", new List<Passenger>()
+                            {
+                                new Passenger("Marco Aurelio",0,4)
+                            }),
+
+               }),
+
             };
             
         }
