@@ -40,11 +40,16 @@ namespace WebApi.Controllers
 
         public IHttpActionResult Post(Reservation reservation)
         {
-            if(ModelState.IsValid)
-            {
+            var db = DataBase.Instance;
+            var managment = new ReservationManagment(db);
 
+            if (ModelState.IsValid)
+            {
+                return Ok(managment.SaveReservation(reservation));
             }
-            return Ok();
+
+            return BadRequest();
+           
         }
 
     }
