@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
+using WebApi.BLL.Object;
 using WebApi.BML;
 using WebApi.DB;
 
@@ -30,15 +33,17 @@ namespace WebApi.Controllers
             {
                 return NotFound();
             }
-            return Ok(reservation);
-            
+            return Ok(reservation);           
 
         }
 
 
-        public IHttpActionResult Post()
+        public IHttpActionResult Post(Reservation reservation)
         {
+            if(ModelState.IsValid)
+            {
 
+            }
             return Ok();
         }
 
